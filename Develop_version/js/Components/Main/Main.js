@@ -19,7 +19,7 @@ const sentences = [ //hasła z których losujemy
     "Herkules",
     "Batman",
     "Spiderman",
-    "Kapitan Ameryka"
+    "Kapitan Ameryka",
 ]
 
 
@@ -36,13 +36,18 @@ export default class Main extends Component {
     }
 
 
+    countRestart = (el) => {
+        this.setState({
+            count: 5
+        })
+    }
+
     sentencesfillterIfYouWin = (el) => {
         this.setState({
             sentences: el
         })
     }
     addActiveClass = (clas, clasRandom) => {
-
         this.setState({
             classN: clas,
             classNrandom: clasRandom
@@ -54,8 +59,8 @@ export default class Main extends Component {
             rnadomWord: el,
             filterArr: el
         })
-
     }
+
     letterToCheck = (el) => {
         if (el === null) {
             this.setState({
@@ -64,7 +69,6 @@ export default class Main extends Component {
                 if (this.state.count <= 0) {
                     alert('Niestety przegrałeś')
                     location.reload();
-
                 }
             })
         } else {
@@ -72,11 +76,7 @@ export default class Main extends Component {
                 tochek: el
             })
         }
-
-        console.log(this.state.filterArr);
-
     }
-
 
     render() {
         return (
@@ -96,6 +96,7 @@ export default class Main extends Component {
                     sentences={this.state.sentences}
                     sentencesfillterIfYouWin={this.sentencesfillterIfYouWin}
                     alphabetPl={alphabetPl}
+                    countRestart={this.countRestart}
 
                 />
             </section>

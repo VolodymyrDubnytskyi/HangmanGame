@@ -69,12 +69,12 @@ export default class LetterContainer extends Component {
                             this.props.sentencesfillterIfYouWin(this.state.sentencesDefult)
                         })
                         this.getRandomWord();
+                        this.props.countRestart()
                     }
                 }
             )
         }
     }
-
 
     render() {
 
@@ -85,6 +85,7 @@ export default class LetterContainer extends Component {
                 <>
                     <div>
                         <ul className={'listWordYouGet'}>
+                            <h3>Rozszyfrowane słowa</h3>
                             {this.state.wordToList.map((el, i) => {
                                 return <li className={'listWordYouGetItem'} key={i}>{el}</li>
                             })}

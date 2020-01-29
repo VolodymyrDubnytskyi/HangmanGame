@@ -6,8 +6,7 @@ export default class RandomWordContainer extends Component {
 
     render() {
 
-        const { wordToGet, wordToCheck, count } = this.props
-        console.log(wordToGet);
+        const { wordToGet, wordToCheck, count } = this.props;
 
         if (wordToGet !== null) {
 

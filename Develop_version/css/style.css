@@ -6,8 +6,7 @@
 
 .main-bg {
   background-color: rgb(238, 238, 238);
-  padding: 100px 0;
-  height: 100vh;
+  padding: 60px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -37,8 +36,8 @@
   padding: 5px;
   font-size: 24px;
   margin: 5px;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +48,8 @@
   background-color: #fff;
   opacity: 1;
   color: #000;
-  height: 90px;
-  width: 90px;
+  height: 75px;
+  width: 75px;
   font-size: 35px;
 }
 
@@ -66,8 +65,8 @@
 }
 
 .RandomWordContainer-defaul-box {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   background-color: #fff;
   border: 2px solid rgb(151, 149, 149);
@@ -99,9 +98,13 @@
   border-radius: 2%;
 }
 .listWordYouGetItem {
-  margin: 5px;
+  margin: 5px 0;
 }
-
+@media (min-width: 970px){
+  .main-bg {
+    height: 100vh;
+  }
+}
 @media (max-width: 600px) {
   .active-random,
   .RandomWordContainer-defaul-box  {
