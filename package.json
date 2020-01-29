@@ -1,0 +1,27 @@
+{
+  "name": "cl_react-config",
+  "version": "1.0.0",
+  "description": "**Jeżeli nie wykonywaliście instrukcji z prezentacji \"Konfiguracja środowiska\", przejdźcie najpierw do niej, aby skonfigurować środowisko do pracy z React.**",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot -d --host 0.0.0.0",
+    "build": "webpack -p"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "whatwg-fetch": "^3.0.0"
+  }
+}
