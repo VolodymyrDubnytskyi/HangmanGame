@@ -1,109 +1,135 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import LetterContainer from './LetterContainer'
 import RandomWordContainer from './RandomWordContainer'
-
-
-const alphabetPl = Array.from('AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUVWYZŹŻ');
-const sentences = [ //hasła z których losujemy
-    "Fantomas",
-    "Super Szamson",
-    "Hasło",
-    "Myszka",
-    "Super bohaterowie",
-    "Super pies",
-    "Przyjaciel",
-    "Kurs JavaScript",
-    "Terminator",
-    "Superman",
-    "Herkules",
-    "Batman",
-    "Spiderman",
-    "Kapitan Ameryka",
-]
-
-
-export default class Main extends Component {
+import { alphabetPl, sentences, cities, test, artists } from '../../data/dummy-data'
+import PopUpRoudn from "../PopUpRoudn";
+import PopUpEndGame from "../PopUpEndGame";
+let gameOverbox;
+class Main extends Component {
 
     state = {
         rnadomWord: null,
         filterArr: null,
-        tochek: null,
+        toCheck: null,
         count: 5,
         classN: '',
         classNrandom: '',
-        sentences: sentences
+        sentences: test,
+        randomToShowIfloose: '',
+        popUpActive: false,
+        startGame: false,
+        playAgain: false
     }
 
-
-    countRestart = (el) => {
+    deliteWordFromMainsentences = wordToDelite => {
+        const wordToRemove = wordToDelite.toLowerCase()
+        this.setState({
+            sentences: this.state.sentences.filter((word) => {
+                return word !== wordToRemove
+            })
+        })
+    }
+    wordThatYouRandom = randomWord => {
+        this.setState({
+            randomToShowIfloose: randomWord
+        })
+    }
+    countRestart = el => {
         this.setState({
             count: 5
         })
     }
-
-    sentencesfillterIfYouWin = (el) => {
+    sentencesfillterIfYouWin = filtredSentences => {
         this.setState({
-            sentences: el
+            sentences: filtredSentences
         })
     }
-    addActiveClass = (clas, clasRandom) => {
+    addActiveClass = (activeClass, clasRandom) => {
         this.setState({
-            classN: clas,
+            classN: activeClass,
             classNrandom: clasRandom
         })
     }
-
-    getRandomWord = (el) => {
+    getRandomWord = word => {
         this.setState({
-            rnadomWord: el,
-            filterArr: el
+            rnadomWord: word,
+            filterArr: word
         })
     }
-
-    letterToCheck = (el) => {
+    letterToCheck = el => {
+        const { count, randomToShowIfloose } = this.state;
         if (el === null) {
             this.setState({
                 count: this.state.count - 1
             }, () => {
-                if (this.state.count <= 0) {
-                    alert('Niestety przegrałeś')
+                if (this.state.count <= 1) {
+                    return gameOverbox = <div>
+                        <PopUpRoudn
+                            title={'Game Over'}
+                            GuessedWrod={this.state.randomToShowIfloose}
+                            ContinueGame={this.gameOver}
+                            bntTitle={'Play Again'} />
+                    </div>
+                    alert(`Niestety przegrałeś słowo kluczowe to: ${this.state.randomToShowIfloose}`)
                     location.reload();
                 }
             })
         } else {
             this.setState({
-                tochek: el
+                toCheck: el
             })
         }
     }
-
+    gameOver = e => {
+        this.setState({
+            playAgain: true
+        })
+        gameOverbox = '';
+    }
+    playAgainFn = e =>{
+        this.setState({
+            playAgain: false
+        })
+    }
+    topicFn = topic => {
+        this.setState({
+            sentences: topic,
+        })
+    }
     render() {
+        const { classN, rnadomWord, count, toCheck, classNrandom, filterArr, sentences, playAgain } = this.state;
+        const { getRandomWord, letterToCheck, addActiveClass, sentencesfillterIfYouWin, countRestart, wordThatYouRandom, popUpActive, playAgainFn} = this;
         return (
             <section className={'main-bg'}>
                 <RandomWordContainer
-                    classN={this.state.classN}
-                    wordToGet={this.state.rnadomWord}
-                    count={this.state.count}
-                    wordToCheck={this.state.tochek}
-                    classNrandom={this.state.classNrandom}
+                    classN={classN}
+                    wordToGet={rnadomWord}
+                    count={count}
+                    wordToCheck={toCheck}
+                    classNrandom={classNrandom}
                 />
                 <LetterContainer
-                    getRandomWord={this.getRandomWord}
-                    letterToCheck={this.letterToCheck}
-                    filterArr={this.state.filterArr}
-                    addActiveClass={this.addActiveClass}
-                    sentences={this.state.sentences}
-                    sentencesfillterIfYouWin={this.sentencesfillterIfYouWin}
+                    startGame={this.state.startGame}
+                    topicFn={this.topicFn}
+                    getRandomWord={getRandomWord}
+                    letterToCheck={letterToCheck}
+                    filterArr={filterArr}
+                    addActiveClass={addActiveClass}
+                    sentences={sentences}
+                    sentencesfillterIfYouWin={sentencesfillterIfYouWin}
                     alphabetPl={alphabetPl}
-                    countRestart={this.countRestart}
-
+                    countRestart={countRestart}
+                    wordThatYouRandom={wordThatYouRandom}
+                    deliteWordFromMainsentences={this.deliteWordFromMainsentences}
+                    playAgain={playAgain}
+                    playAgainFn={playAgainFn}
                 />
+                {gameOverbox}
             </section>
         )
     }
 }
-
+export default Main;
 
 
 
