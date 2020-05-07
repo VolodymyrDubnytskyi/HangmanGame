@@ -136,7 +136,8 @@ class LetterContainer extends Component {
             topicActive: topic.name,
             popUpActive: false,
             sentencesDefult: topic.content,
-            wordToList: []
+            wordToList: [],
+            ifYouWon: false
         }, () => {
             this.getRandomWord()
         })
@@ -185,7 +186,7 @@ class LetterContainer extends Component {
                 <button
                     className={'random_word_btn'}
                     onClick={this.state.topicActive.length > 0 ? this.getRandomWord : this.popUpActive}
-                    disabled={this.state.popUpActive && true}>Losuj nowe hasło</button>
+                    disabled={(this.state.popUpActive || this.props.count <= 1) && true}>Losuj nowe hasło</button>
                 {
                     (this.state.popUpActive || this.props.playAgain) &&
                     <PopUp>
@@ -195,7 +196,8 @@ class LetterContainer extends Component {
                     </PopUp>
                 }
                 {
-                    this.state.popUpEndGame && <PopUpEndGame
+                    this.state.popUpEndGame && 
+                    <PopUpEndGame
                         listOfAllGuessedWords={this.state.wordToList}
                         closePopUpEndGame={this.closePopUpEndGame}
                     />

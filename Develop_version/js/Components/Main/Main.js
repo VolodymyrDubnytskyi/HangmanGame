@@ -66,12 +66,10 @@ class Main extends Component {
                     return gameOverbox = <div>
                         <PopUpRoudn
                             title={'Game Over'}
-                            GuessedWrod={this.state.randomToShowIfloose}
-                            ContinueGame={this.gameOver}
-                            bntTitle={'Play Again'} />
+                            guessedWrod={this.state.randomToShowIfloose}
+                            continueGame={this.gameOver}
+                            btntitle={'Play Again'} />
                     </div>
-                    alert(`Niestety przegrałeś słowo kluczowe to: ${this.state.randomToShowIfloose}`)
-                    location.reload();
                 }
             })
         } else {
@@ -123,6 +121,7 @@ class Main extends Component {
                     deliteWordFromMainsentences={this.deliteWordFromMainsentences}
                     playAgain={playAgain}
                     playAgainFn={playAgainFn}
+                    count={this.state.count}
                 />
                 {gameOverbox}
             </section>
