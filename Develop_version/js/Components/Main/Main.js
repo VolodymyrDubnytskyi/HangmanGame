@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import LetterContainer from './LetterContainer'
 import RandomWordContainer from './RandomWordContainer'
-import { alphabetPl, sentences, cities, test, artists } from '../../data/dummy-data'
+import { alphabetPl, sentences, cities, test, artists, alphabetUK } from '../../data/dummy-data'
 import PopUpRoudn from "../PopUpRoudn";
-import PopUpEndGame from "../PopUpEndGame";
+
+
 let gameOverbox;
+
 class Main extends Component {
 
     state = {
@@ -18,7 +20,8 @@ class Main extends Component {
         randomToShowIfloose: '',
         popUpActive: false,
         startGame: false,
-        playAgain: false
+        playAgain: false,
+        gameOver: false
     }
 
     deliteWordFromMainsentences = wordToDelite => {
@@ -57,19 +60,18 @@ class Main extends Component {
         })
     }
     letterToCheck = el => {
-        const { count, randomToShowIfloose } = this.state;
         if (el === null) {
             this.setState({
-                count: this.state.count - 1
+                count: this.state.count - 1 === 0 ? 0 : this.state.count - 1
             }, () => {
-                if (this.state.count <= 1) {
+                if(this.state.count === 0){
+                   this.setState({gameOver: true})
                     return gameOverbox = <div>
-                        <PopUpRoudn
-                            title={'Game Over'}
-                            guessedWrod={this.state.randomToShowIfloose}
-                            continueGame={this.gameOver}
-                            btntitle={'Play Again'} />
-                    </div>
+                    <PopUpRoudn
+                        title={'Game Over'}
+                        guessedWrod={this.state.randomToShowIfloose}
+                        continueGame={this.gameOver}
+                        btntitle={'Play Again'} /> </div> 
                 }
             })
         } else {
@@ -80,11 +82,12 @@ class Main extends Component {
     }
     gameOver = e => {
         this.setState({
-            playAgain: true
+            playAgain: true,
+            gameOver: false
         })
         gameOverbox = '';
     }
-    playAgainFn = e =>{
+    playAgainFn = e => {
         this.setState({
             playAgain: false
         })
@@ -96,7 +99,7 @@ class Main extends Component {
     }
     render() {
         const { classN, rnadomWord, count, toCheck, classNrandom, filterArr, sentences, playAgain } = this.state;
-        const { getRandomWord, letterToCheck, addActiveClass, sentencesfillterIfYouWin, countRestart, wordThatYouRandom, popUpActive, playAgainFn} = this;
+        const { getRandomWord, letterToCheck, addActiveClass, sentencesfillterIfYouWin, countRestart, wordThatYouRandom, popUpActive, playAgainFn } = this;
         return (
             <section className={'main-bg'}>
                 <RandomWordContainer
@@ -116,6 +119,7 @@ class Main extends Component {
                     sentences={sentences}
                     sentencesfillterIfYouWin={sentencesfillterIfYouWin}
                     alphabetPl={alphabetPl}
+                    alphabetUK={alphabetUK}
                     countRestart={countRestart}
                     wordThatYouRandom={wordThatYouRandom}
                     deliteWordFromMainsentences={this.deliteWordFromMainsentences}

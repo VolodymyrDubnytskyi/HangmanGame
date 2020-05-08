@@ -1,10 +1,10 @@
 import React from "react";
 
 const Alphabet = props => {
-    const { alphabetPl, activeClass, handelLetterClick, activeIdLetter } = props;
+    const { alphabetPl, activeClass, handelLetterClick, activeIdLetter, alphabetUK } = props;
     return (
         <div className={`latters-container`}>
-            {alphabetPl.map((el, i) => {
+            {alphabetUK.map((el, i) => {
                 return <div
                     className={`letter ${!activeIdLetter.includes(i) && activeClass}`}
                     key={i}

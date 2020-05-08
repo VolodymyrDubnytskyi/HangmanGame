@@ -54,6 +54,7 @@
   opacity: 1;
   color: #000;
   cursor: pointer;
+  transition: .3s;
 }
 .active:hover {
   background-color: #f15c5c;
@@ -90,7 +91,8 @@
   color: #fff;
   font-size: 20px;
 }
-.topic-container .not-active {
+.topic-container .not-active,
+.help-box-container .not-active {
   display: none;
 }
 .topic-header {
@@ -118,7 +120,8 @@
   color: #fff;
 }
 .topic-container,
-.listWordYouGet {
+.listWordYouGet,
+.help-box-container {
   position: absolute;
   top: 0;
   display: flex;
@@ -141,6 +144,10 @@
   font-family: "Open Sans", sans-serif;
   overflow: hidden;
 }
+.help-box-container{
+  top: 65px;
+  left: 0;
+}
 .listWordYouGet {
   right: 0;
 }
@@ -158,6 +165,7 @@
   box-shadow: 0px 0px 2px 0px #f15c5c;
   color: #000;
   padding: 10px;
+  z-index: 200;
 }
 .listWordYouGet-list{
   width: 100%;
@@ -170,7 +178,8 @@
   padding: 5px;
 }
 .fa-check,
-.fa-info {
+.fa-info,
+.fa-question {
   font-size: 20px;
 }
 .listWordYouGet h3 {

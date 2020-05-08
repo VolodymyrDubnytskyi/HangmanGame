@@ -6,6 +6,7 @@ import ListOfSentences from "../ListOfSentences";
 import Alphabet from "../Alphabet";
 import PopUpRoudn from "../PopUpRoudn";
 import PopUpEndGame from "../PopUpEndGame";
+import HelpBox from "../HelpBox";
 
 
 class LetterContainer extends Component {
@@ -25,9 +26,10 @@ class LetterContainer extends Component {
         popUpActive: false,
         topicActive: '',
         activeIdLetter: [],
-        popUpEndGame: false
+        popUpEndGame: false,
+        actualPromt: ''
     }
-    // refHooks
+    // ref
     container = React.createRef();
     containerTopics = React.createRef();
     // adding outside click to close info boxes with topiac and gueesed sentences
@@ -44,7 +46,8 @@ class LetterContainer extends Component {
         } else {
             const { sentences, countRestart } = this.props;
             let randomNR = Math.floor(Math.random() * Math.floor(sentences.length));
-            let arrRandomWord = this.props.sentences[randomNR].toUpperCase();
+            let arrRandomWord = this.props.sentences[randomNR].name.toUpperCase();
+            let actualPromt = this.props.sentences[randomNR].promt;
             let newArr = Array.from(arrRandomWord.split(" ").join(""));
             this.setState({
                 randomWord: newArr,
@@ -55,6 +58,7 @@ class LetterContainer extends Component {
                 wordThatYouget: [],
                 wordToDelite: arrRandomWord,
                 activeIdLetter: '',
+                actualPromt: actualPromt
             }, () => {
                 const { randomWord, activeClass, activeRandom, wordThatYouget, wordToDelite } = this.state
                 const { addActiveClass, letterToCheck, wordThatYouRandom, deliteWordFromMainsentences } = this.props;
@@ -95,7 +99,7 @@ class LetterContainer extends Component {
                             wordThatYouget: [],
                             ifYouWon: true,
                             sentencesDefult: this.state.sentencesDefult.filter((el) => {
-                                return el.toUpperCase() !== this.state.wordToDelite
+                                return el.name.toUpperCase() !== this.state.wordToDelite
                             })
                         }, () => {
                             this.props.sentencesfillterIfYouWin(this.state.sentencesDefult)
@@ -179,14 +183,20 @@ class LetterContainer extends Component {
                 />
                 <Alphabet
                     alphabetPl={this.props.alphabetPl}
+                    alphabetUK={this.props.alphabetUK}
                     activeClass={this.state.activeClass}
                     handelLetterClick={this.handelLetterClick}
                     activeIdLetter={this.state.activeIdLetter} />
+                <HelpBox
+                    topicActive={this.state.topicActive}
+                    promt={this.state.actualPromt} />
 
                 <button
                     className={'random_word_btn'}
                     onClick={this.state.topicActive.length > 0 ? this.getRandomWord : this.popUpActive}
-                    disabled={(this.state.popUpActive || this.props.count <= 1) && true}>Losuj nowe hasło</button>
+                    disabled={(this.state.popUpActive || this.props.count <= 0) && true}>
+                    Random word
+                </button>
                 {
                     (this.state.popUpActive || this.props.playAgain) &&
                     <PopUp>
@@ -196,7 +206,7 @@ class LetterContainer extends Component {
                     </PopUp>
                 }
                 {
-                    this.state.popUpEndGame && 
+                    this.state.popUpEndGame &&
                     <PopUpEndGame
                         listOfAllGuessedWords={this.state.wordToList}
                         closePopUpEndGame={this.closePopUpEndGame}
