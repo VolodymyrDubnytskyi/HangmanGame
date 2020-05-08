@@ -54,7 +54,7 @@
   opacity: 1;
   color: #000;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 .active:hover {
   background-color: #f15c5c;
@@ -103,8 +103,9 @@
   width: 15%;
   border: 0.5px solid #f15c5c;
   height: 0;
+  transition: 0.5s;
 }
-.popUp-endGame-container .topic-decoration-hr {
+.popUp-endGame-container .topic-decoration-hr{
   width: 70%;
 }
 .topic-btn {
@@ -144,14 +145,14 @@
   font-family: "Open Sans", sans-serif;
   overflow: hidden;
 }
-.help-box-container{
+.help-box-container {
   top: 65px;
   left: 0;
 }
 .listWordYouGet {
   right: 0;
 }
-.nActive{
+.nActive {
   display: none;
 }
 .listWordYouGetMenuList .nActive {
@@ -167,7 +168,7 @@
   padding: 10px;
   z-index: 200;
 }
-.listWordYouGet-list{
+.listWordYouGet-list {
   width: 100%;
 }
 .listWordYouGetMenuList .listWordYouGetItem {
@@ -301,4 +302,10 @@
 }
 .popUp-endGame-item {
   margin: 5px auto;
+}
+.help-box-promt {
+  margin: 10px 0;
+}
+.help-box-content-container .topic-decoration-hr {
+  width: 75%;
 }

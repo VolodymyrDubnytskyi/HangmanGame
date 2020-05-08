@@ -66,17 +66,17 @@ export const popUpTopics = [
             {
                 id: 1,
                 name: 'PICASSO',
-                promt: 'some decrition'
+                promt: 'some decrition PICASSO'
             },
             {
                 id: 2,
                 name: 'KLIMT',
-                promt: 'some decrition'
+                promt: 'some decrition KLIMNT'
             },
             {
                 id: 3,
                 name: 'VAN GOGH',
-                promt: 'some decrition'
+                promt: 'some decrition VANGOH'
             },
         ]
     },

@@ -83,6 +83,18 @@ class LetterContainer extends Component {
             this.props.letterToCheck(null)
         }
     }
+    randomLetterPromt = e => {
+        let randomNR = Math.floor(Math.random() * Math.floor(this.state.randomWord.length));
+        let randomLetterIndex = this.state.randomWord[randomNR];
+        if (!this.state.wordThatYouget.includes(this.randomLetterIndex)) {
+            this.setState({
+                win: this.state.win.filter((el) => el !== randomLetterIndex),
+                wordThatYouget: [randomLetterIndex, ...this.state.wordThatYouget],
+                activeIdLetter: [...this.state.activeIdLetter, randomNR]
+            }, ()=>  this.props.letterToCheck(this.state.wordThatYouget))
+        }
+
+    }
     handelLetterClick = (e, id) => {
         if (this.state.gameStart === true) {
             this.checkGueesedLetter(e.target, id);
@@ -189,7 +201,8 @@ class LetterContainer extends Component {
                     activeIdLetter={this.state.activeIdLetter} />
                 <HelpBox
                     topicActive={this.state.topicActive}
-                    promt={this.state.actualPromt} />
+                    promt={this.state.actualPromt}
+                    randomLetterPromt={this.randomLetterPromt} />
 
                 <button
                     className={'random_word_btn'}
