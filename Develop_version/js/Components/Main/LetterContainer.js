@@ -86,6 +86,7 @@ class LetterContainer extends Component {
     randomLetterPromt = e => {
         let randomNR = Math.floor(Math.random() * Math.floor(this.state.randomWord.length));
         let randomLetterIndex = this.state.randomWord[randomNR];
+
         if (!this.state.wordThatYouget.includes(this.randomLetterIndex)) {
             this.setState({
                 win: this.state.win.filter((el) => el !== randomLetterIndex),
