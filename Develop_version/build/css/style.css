@@ -81,6 +81,7 @@
   font-weight: bold;
   border-radius: 0.3rem;
   cursor: pointer;
+  outline: none;
 }
 /* Topic section */
 .topic-container {
@@ -98,6 +99,10 @@
 .topic-header {
   margin: 10px 0;
 }
+.topic-description{
+  /* font-weight: 300;
+  font-style: italic; */
+}
 .topic-decoration-hr {
   margin: 15px auto;
   width: 15%;
@@ -105,7 +110,7 @@
   height: 0;
   transition: 0.5s;
 }
-.popUp-endGame-container .topic-decoration-hr{
+.popUp-endGame-container .topic-decoration-hr {
   width: 70%;
 }
 .topic-btn {
@@ -115,6 +120,7 @@
   border-radius: 0.2rem;
   transition: 0.4s;
   cursor: pointer;
+  outline: none;
 }
 .topic-btn:hover {
   background-color: #f15c5c;
@@ -149,10 +155,13 @@
   top: 65px;
   left: 0;
 }
+.initialOverflow {
+  overflow: initial;
+}
 .listWordYouGet {
   right: 0;
 }
-.nActive {
+.listWordYouGet .nActive{
   display: none;
 }
 .listWordYouGetMenuList .nActive {
@@ -308,4 +317,37 @@
 }
 .help-box-content-container .topic-decoration-hr {
   width: 75%;
+}
+.disabled-btn {
+  background-color: #f15c5c;
+  color: #fff;
+  opacity: 0.3;
+  cursor: auto;
+}
+.tooltip-container {
+  position: absolute;
+  border-radius: 0px 6px 6px 6px;
+  top: 86%;
+  right: -32%;
+  width: 150px;
+  font-size: 12px;
+  z-index: 300;
+  background-color: #f15c5c;
+  color: #fff;
+  padding: 5px;
+  /* display: none; */
+  opacity: 0;
+  transition:opacity 0.2s ease-in;
+}
+.tooltip-container-visible {
+  /* display: block; */
+  opacity: 1;
+}
+.help-box-btn-container{
+  height: 40px;
+  width: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }

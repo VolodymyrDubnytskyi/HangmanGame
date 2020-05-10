@@ -6,7 +6,7 @@ const Alphabet = props => {
         <div className={`latters-container`}>
             {alphabetUK.map((el, i) => {
                 return <div
-                    className={`letter ${!activeIdLetter.includes(i) && activeClass}`}
+                    className={`letter ${!activeIdLetter.includes(el) && activeClass}`}
                     key={i}
                     onClick={(e) => handelLetterClick(e, i)}>
                     {el}

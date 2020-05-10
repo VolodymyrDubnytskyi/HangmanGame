@@ -2,7 +2,7 @@ import React from "react";
 import PopUp from "./PopUp";
 
 const PopUpEndGame = props => {
-    const {listOfAllGuessedWords, closePopUpEndGame } = props;
+    const {listOfAllGuessedWords, closePopUpEndGame, mistakes } = props;
     return (
         <PopUp>
             <div className={'popUp-endGame-container'}>
@@ -27,7 +27,7 @@ const PopUpEndGame = props => {
                     </div>
                     <div>
                         <p>Mistakes</p>
-                        <span>8</span>
+                        <span>{mistakes}</span>
                     </div>
                 </div>
                 <button className={'topic-btn'} onClick={closePopUpEndGame}>PlayAgain</button>

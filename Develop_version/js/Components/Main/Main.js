@@ -21,7 +21,8 @@ class Main extends Component {
         popUpActive: false,
         startGame: false,
         playAgain: false,
-        gameOver: false
+        gameOver: false,
+        mistakes: 0
     }
 
     deliteWordFromMainsentences = wordToDelite => {
@@ -62,7 +63,8 @@ class Main extends Component {
     letterToCheck = el => {
         if (el === null) {
             this.setState({
-                count: this.state.count - 1 === 0 ? 0 : this.state.count - 1
+                count: this.state.count - 1 === 0 ? 0 : this.state.count - 1,
+                mistakes: this.state.mistakes + 1
             }, () => {
                 if(this.state.count === 0){
                    this.setState({gameOver: true})
@@ -97,6 +99,11 @@ class Main extends Component {
             sentences: topic,
         })
     }
+    restartMistakes = e=>{
+        this.setState({
+            mistakes: 0
+        })
+    }
     render() {
         const { classN, rnadomWord, count, toCheck, classNrandom, filterArr, sentences, playAgain } = this.state;
         const { getRandomWord, letterToCheck, addActiveClass, sentencesfillterIfYouWin, countRestart, wordThatYouRandom, popUpActive, playAgainFn } = this;
@@ -126,6 +133,8 @@ class Main extends Component {
                     playAgain={playAgain}
                     playAgainFn={playAgainFn}
                     count={this.state.count}
+                    restartMistakes={this.restartMistakes}
+                    mistakes={this.state.mistakes}
                 />
                 {gameOverbox}
             </section>

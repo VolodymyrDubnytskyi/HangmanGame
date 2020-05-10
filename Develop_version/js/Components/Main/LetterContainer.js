@@ -27,7 +27,8 @@ class LetterContainer extends Component {
         topicActive: '',
         activeIdLetter: [],
         popUpEndGame: false,
-        actualPromt: ''
+        actualPromt: '',
+        usedPromt: false
     }
     // ref
     container = React.createRef();
@@ -58,10 +59,11 @@ class LetterContainer extends Component {
                 wordThatYouget: [],
                 wordToDelite: arrRandomWord,
                 activeIdLetter: '',
-                actualPromt: actualPromt
+                actualPromt: actualPromt,
+                usedPromt: false
             }, () => {
                 const { randomWord, activeClass, activeRandom, wordThatYouget, wordToDelite } = this.state
-                const { addActiveClass, letterToCheck, wordThatYouRandom, deliteWordFromMainsentences } = this.props;
+                const { addActiveClass, letterToCheck, wordThatYouRandom } = this.props;
                 this.props.getRandomWord(randomWord)
                 addActiveClass(activeClass, activeRandom)
                 letterToCheck(wordThatYouget)
@@ -75,7 +77,7 @@ class LetterContainer extends Component {
         if (this.state.randomWord.includes(clickedLetter.innerText)) {
             this.setState({
                 wordThatYouget: [clickedLetter.innerText, ...this.state.wordThatYouget],
-                activeIdLetter: [...this.state.activeIdLetter, id]
+                activeIdLetter: [...this.state.activeIdLetter, clickedLetter.innerText]
             }, () => {
                 this.props.letterToCheck(this.state.wordThatYouget)
             })
@@ -84,17 +86,24 @@ class LetterContainer extends Component {
         }
     }
     randomLetterPromt = e => {
-        let randomNR = Math.floor(Math.random() * Math.floor(this.state.randomWord.length));
-        let randomLetterIndex = this.state.randomWord[randomNR];
 
-        if (!this.state.wordThatYouget.includes(this.randomLetterIndex)) {
+        if (!this.state.usedPromt) {
             this.setState({
-                win: this.state.win.filter((el) => el !== randomLetterIndex),
-                wordThatYouget: [randomLetterIndex, ...this.state.wordThatYouget],
-                activeIdLetter: [...this.state.activeIdLetter, randomNR]
-            }, ()=>  this.props.letterToCheck(this.state.wordThatYouget))
-        }
+                usedPromt: true
+            })
+            let randomNR = Math.floor(Math.random() * Math.floor(this.state.randomWord.length));
+            let randomLetterIndex = this.state.randomWord[randomNR];
 
+            if (this.state.wordThatYouget.includes(randomLetterIndex)) {
+                this.randomLetterPromt();
+            } else {
+                this.setState({
+                    win: this.state.win.filter((el) => el !== randomLetterIndex),
+                    wordThatYouget: [randomLetterIndex, ...this.state.wordThatYouget],
+                    activeIdLetter: [...this.state.activeIdLetter, randomLetterIndex]
+                }, () => this.props.letterToCheck(this.state.wordThatYouget))
+            }
+        }
     }
     handelLetterClick = (e, id) => {
         if (this.state.gameStart === true) {
@@ -168,6 +177,7 @@ class LetterContainer extends Component {
             popUpEndGame: false,
             popUpActive: true
         })
+        this.props.restartMistakes();
     }
     render() {
         return (
@@ -203,7 +213,8 @@ class LetterContainer extends Component {
                 <HelpBox
                     topicActive={this.state.topicActive}
                     promt={this.state.actualPromt}
-                    randomLetterPromt={this.randomLetterPromt} />
+                    randomLetterPromt={this.randomLetterPromt}
+                    usedPromt={this.state.usedPromt} />
 
                 <button
                     className={'random_word_btn'}
@@ -224,6 +235,8 @@ class LetterContainer extends Component {
                     <PopUpEndGame
                         listOfAllGuessedWords={this.state.wordToList}
                         closePopUpEndGame={this.closePopUpEndGame}
+                        mistakes={this.props.mistakes}
+
                     />
                 }
 
