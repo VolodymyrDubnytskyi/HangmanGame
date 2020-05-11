@@ -16,7 +16,7 @@ class Main extends Component {
         count: 5,
         classN: '',
         classNrandom: '',
-        sentences: test,
+        sentences: '',
         randomToShowIfloose: '',
         popUpActive: false,
         startGame: false,
@@ -135,6 +135,7 @@ class Main extends Component {
                     count={this.state.count}
                     restartMistakes={this.restartMistakes}
                     mistakes={this.state.mistakes}
+                    gameOver={this.state.gameOver}
                 />
                 {gameOverbox}
             </section>

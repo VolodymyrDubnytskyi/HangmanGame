@@ -7,7 +7,7 @@ const HelpBox = props => {
     const containerPrompt = useRef()
     const handleClickOutside = e => {
         containerPrompt.current && !containerPrompt.current.contains(e.target) && setPromptActive(false)
-        // setActiveOverflow(true)
+        containerPrompt.current && !containerPrompt.current.contains(e.target) && setActiveOverflow(true)
     };
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -29,7 +29,7 @@ const HelpBox = props => {
                         <h4>Promt</h4>
                         <p className={'help-box-promt'}>{props.promt}</p>
                         <hr className={'topic-decoration-hr'} />
-                        <p className={'help-box-promt'}>Still need help?</p>
+                        <h4 className={'help-box-heding'}>Still need help?</h4>
                         <div
                             className={'help-box-btn-container'}
                             onMouseOver={() => {
@@ -43,6 +43,7 @@ const HelpBox = props => {
                                 onClick={(e) => {
                                     e.stopPropagation()
                                     !props.usedPromt && setPromptActive(false)
+                                    !props.usedPromt && setActiveOverflow(true)
                                     props.randomLetterPromt()
                                 }}>
                                 Random letter

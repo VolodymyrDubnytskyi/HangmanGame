@@ -25,6 +25,12 @@ const PopUpTopicList = props => {
 
                 </div>
             </section>
+            {props.sentences.length !== 0 &&
+            !props.playAgain &&
+                <div className={'popUp-close-btn'} onClick={props.closeTopicPopUp}>
+                    <i className='fas fa-times'></i>
+                </div>}
+
         </>
     );
 }

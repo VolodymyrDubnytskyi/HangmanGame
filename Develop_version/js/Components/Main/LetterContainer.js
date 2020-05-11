@@ -28,7 +28,8 @@ class LetterContainer extends Component {
         activeIdLetter: [],
         popUpEndGame: false,
         actualPromt: '',
-        usedPromt: false
+        usedPromt: false,
+        topicDescription: ''
     }
     // ref
     container = React.createRef();
@@ -36,6 +37,7 @@ class LetterContainer extends Component {
     // adding outside click to close info boxes with topiac and gueesed sentences
     componentDidMount() {
         document.addEventListener("mousedown", this.handleClickOutside);
+        this.props.playAgain && this.setState({popUpActive: true})
     }
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
@@ -74,10 +76,13 @@ class LetterContainer extends Component {
     }
 
     checkGueesedLetter = (clickedLetter, id) => {
+        this.setState({
+            activeIdLetter: [...this.state.activeIdLetter, clickedLetter.innerText]
+        })
         if (this.state.randomWord.includes(clickedLetter.innerText)) {
             this.setState({
                 wordThatYouget: [clickedLetter.innerText, ...this.state.wordThatYouget],
-                activeIdLetter: [...this.state.activeIdLetter, clickedLetter.innerText]
+                // activeIdLetter: [...this.state.activeIdLetter, clickedLetter.innerText]
             }, () => {
                 this.props.letterToCheck(this.state.wordThatYouget)
             })
@@ -86,7 +91,6 @@ class LetterContainer extends Component {
         }
     }
     randomLetterPromt = e => {
-
         if (!this.state.usedPromt) {
             this.setState({
                 usedPromt: true
@@ -100,37 +104,50 @@ class LetterContainer extends Component {
                 this.setState({
                     win: this.state.win.filter((el) => el !== randomLetterIndex),
                     wordThatYouget: [randomLetterIndex, ...this.state.wordThatYouget],
-                    activeIdLetter: [...this.state.activeIdLetter, randomLetterIndex]
-                }, () => this.props.letterToCheck(this.state.wordThatYouget))
+                    activeIdLetter: [...this.state.activeIdLetter, randomLetterIndex],
+                }, () => {
+                    this.props.letterToCheck(this.state.wordThatYouget)
+                    this.checkDidYouWinRound();
+                })
             }
         }
     }
+    checkDidYouWinRound = e => {
+        if (this.state.win.length <= 0) {
+            this.props.deliteWordFromMainsentences(this.state.wordToDelite)
+            this.setState({
+                wordToList: [...this.state.wordToList, this.state.randomWord.join('')],
+                wordThatYouget: [],
+                ifYouWon: true,
+                sentencesDefult: this.state.sentencesDefult.filter((el) => {
+                    return el.name.toUpperCase() !== this.state.wordToDelite
+                })
+            }, () => {
+                this.props.sentencesfillterIfYouWin(this.state.sentencesDefult)
+            })
+            this.props.countRestart()
+        }
+    }
     handelLetterClick = (e, id) => {
-        if (this.state.gameStart === true) {
-            this.checkGueesedLetter(e.target, id);
-            this.setState(
-                {
-                    win: this.state.win.filter((el) => {
-                        return el !== e.target.innerText
-                    })
-                }, () => {
-                    if (this.state.win.length <= 0) {
-                        this.props.deliteWordFromMainsentences(this.state.wordToDelite)
-                        this.setState({
-                            wordToList: [...this.state.wordToList, this.state.randomWord.join('')],
-                            wordThatYouget: [],
-                            ifYouWon: true,
-                            sentencesDefult: this.state.sentencesDefult.filter((el) => {
-                                return el.name.toUpperCase() !== this.state.wordToDelite
-                            })
-                        }, () => {
-                            this.props.sentencesfillterIfYouWin(this.state.sentencesDefult)
-                        })
-                        this.props.countRestart()
+        if (!this.props.playAgain) {
+            if (!this.state.popUpActive) {
+                if (!this.props.gameOver) {
+                    if (this.state.gameStart === true) {
+                        this.checkGueesedLetter(e.target, id);
+                        this.setState(
+                            {
+                                win: this.state.win.filter((el) => {
+                                    return el !== e.target.innerText
+                                })
+                            }, () => {
+                                this.checkDidYouWinRound();
+                            }
+                        )
                     }
                 }
-            )
+            }
         }
+
     }
     showMenu = e => {
         this.setState({
@@ -163,7 +180,8 @@ class LetterContainer extends Component {
             popUpActive: false,
             sentencesDefult: topic.content,
             wordToList: [],
-            ifYouWon: false
+            ifYouWon: false,
+            topicDescription: topic.description
         }, () => {
             this.getRandomWord()
         })
@@ -178,6 +196,11 @@ class LetterContainer extends Component {
             popUpActive: true
         })
         this.props.restartMistakes();
+    }
+    closeTopicPopUp = e => {
+        this.setState({
+            popUpActive: false
+        })
     }
     render() {
         return (
@@ -203,13 +226,16 @@ class LetterContainer extends Component {
                     activeTopicMenu={this.state.activeTopicMenu}
                     activeTopicMenuFn={this.activeTopicMenuFn}
                     popUpActive={this.popUpActive}
+                    topicDescription={this.state.topicDescription}
                 />
                 <Alphabet
                     alphabetPl={this.props.alphabetPl}
                     alphabetUK={this.props.alphabetUK}
                     activeClass={this.state.activeClass}
                     handelLetterClick={this.handelLetterClick}
-                    activeIdLetter={this.state.activeIdLetter} />
+                    activeIdLetter={this.state.activeIdLetter}
+                    popUpActive={this.state.popUpActive}
+                    playAgain={this.props.playAgain} />
                 <HelpBox
                     topicActive={this.state.topicActive}
                     promt={this.state.actualPromt}
@@ -217,7 +243,7 @@ class LetterContainer extends Component {
                     usedPromt={this.state.usedPromt} />
 
                 <button
-                    className={'random_word_btn'}
+                    className={`random_word_btn ${(this.state.popUpActive || this.props.count <= 0) && 'disabled-btn'}`}
                     onClick={this.state.topicActive.length > 0 ? this.getRandomWord : this.popUpActive}
                     disabled={(this.state.popUpActive || this.props.count <= 0) && true}>
                     Random word
@@ -227,7 +253,10 @@ class LetterContainer extends Component {
                     <PopUp>
                         <PopUpTopicList
                             title={'Choose Topic'}
-                            topicFn={this.popUpNotactive} />
+                            topicFn={this.popUpNotactive}
+                            closeTopicPopUp={this.closeTopicPopUp}
+                            sentences={this.state.sentencesDefult}
+                            playAgain={this.props.playAgain} />
                     </PopUp>
                 }
                 {

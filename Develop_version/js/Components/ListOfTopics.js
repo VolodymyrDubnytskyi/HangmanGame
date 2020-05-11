@@ -11,8 +11,8 @@ const ListOfTopics = props => {
                     onClick={activeTopicMenuFn}>
                     <i className={`fas fa-info ${activeTopicMenu && 'not-active'}`}></i>
                     <div className={`topic-content-container ${!activeTopicMenu && 'not-active'}`}>
-                        <h4 className={'topic-header'}>{topicActive.toUpperCase()}</h4>
-                        <p className={'topic-description'}>artis - look into you memory for the mostl popular and loved artist</p>
+                        <h4 className={'topic-header'}>{topicActive}</h4>
+                        <p className={'topic-description'}>{props.topicDescription}</p>
                         <hr className={'topic-decoration-hr'} />
                         <button className={'topic-btn'} onClick={popUpActive}>Change Topic</button>
                     </div>

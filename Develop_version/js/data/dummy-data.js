@@ -1,5 +1,5 @@
 export const alphabetPl = Array.from('AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUVWYZŹŻ');
-export const alphabetUK = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+export const alphabetUK = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ+#');
 export const sentences = [
     "Fantomas",
     "Super Szamson",
@@ -30,38 +30,11 @@ export const cities = [
     'Berlin',
     'Lisbon'
 ]
-export const test = ['eee', 'aaaa', 'ea']
-// export const artists = ['PICASSO', 'KLIMT', 'MONET', 'VAN GOGH', 'POLLOCK']
-// export const artists = [
-//     {
-//         name: 'PICASSO',
-//         prompt: 'decription'
-//     },
-//     {
-//         name: 'KLIMT',
-//         prompt: 'decription'
-//     },
-//     {
-//         name: 'MONET',
-//         prompt: 'decription'
-//     },
-//     {
-//         name: 'VAN GOGH',
-//         prompt: 'decription'
-//     },
-//     {
-//         name: 'POLLOCK',
-//         prompt: 'decription'
-//     },
-// ]
-export const tarantinoFilmography = ['Pulp Fiction', 'Django Unchained', 'Once Upon a Time in Hollywood', 'Sin City', 'Kill Bill']
-
-// export const popUpTopics = [ 'artists', 'cities', 'music', 'tarantino Filmography']
 export const popUpTopics = [
     {
         id: 1,
         name: 'Artists',
-        // content: ['PICASSO', 'KLIMT', 'MONET', 'VAN GOGH', 'POLLOCK'],
+        description: '',
         content: [
             {
                 id: 1,
@@ -82,12 +55,66 @@ export const popUpTopics = [
     },
     {
         id: 2,
-        name: 'Test',
-        content: ['eee', 'aaaa', 'ea']
+        name: 'Programming languages',
+        description: 'Top 10 Languages to Use in 2020',
+        content: [
+            {
+                id:1,
+                name: 'JavaScript',
+                promt: 'Is one of the core technologies of the World Wide Web'
+            },
+            {
+                id:2,
+                name: 'Java',
+                promt: 'As of 2019, ... was one of the most popular programming languages in use'
+            },
+            {
+                id:3,
+                name: 'Python',
+                promt: 'Being the most learned at the moment'
+            },
+            {
+                id:4,
+                name: 'TypeScript',
+                promt: 'Is one of the fastest-growing open-source languages that calls itself ‘JavaScript that scales'
+            },
+            {
+                id:5,
+                name: 'PHP',
+                promt: 'Having a large open-source community and being widely used by the industry giants like Facebook or WordPress'
+            },
+            {
+                id:6,
+                name: 'C#',
+                promt: 'is a multi-paradigm programming language created by Microsoft to run on its .NET framework'
+            },
+            {
+                id:7,
+                name: 'C++',
+                promt: 'iappeared as an improved version of the C language introducing object-oriented features'
+            },
+        ]
     },
     {
-        id: 3,
-        name: 'Tarantino Filmography',
-        content: ['Pulp Fiction', 'Django Unchained', 'Once Upon a Time in Hollywood', 'Sin City', 'Kill Bill']
+        id: 2,
+        name: 'Presidents of poland',
+        description: 'Yes, all of them',
+        content: [
+            {
+                id:1,
+                name: 'Gabriel Narutowicz',
+                promt: 'the first one'
+            },
+            {
+                id:2,
+                name: 'Java',
+                promt: 'As of 2019, ... was one of the most popular programming languages in use'
+            },
+            {
+                id:3,
+                name: 'Python',
+                promt: 'Being the most learned at the moment'
+            },
+        ]
     },
 ]
