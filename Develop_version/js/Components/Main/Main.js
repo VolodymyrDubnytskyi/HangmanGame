@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import LetterContainer from './LetterContainer'
 import RandomWordContainer from './RandomWordContainer'
 import { alphabetPl, sentences, cities, test, artists, alphabetUK } from '../../data/dummy-data'
-import PopUpRoudn from "../PopUpRoudn";
-
+import PopUpRoudn from "../PopUps/PopUpRoudn";
 
 let gameOverbox;
 

@@ -4,7 +4,7 @@ const HelpBox = props => {
     const [activeTooltip, setActiveTooltip] = useState(false)
     const [activeOverflow, setActiveOverflow] = useState(true)
     const { topicActive } = props;
-    const containerPrompt = useRef()
+    const containerPrompt = useRef()                                                        
     const handleClickOutside = e => {
         containerPrompt.current && !containerPrompt.current.contains(e.target) && setPromptActive(false)
         containerPrompt.current && !containerPrompt.current.contains(e.target) && setActiveOverflow(true)

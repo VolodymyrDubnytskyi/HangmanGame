@@ -93,6 +93,21 @@ export const popUpTopics = [
                 name: 'C++',
                 promt: 'iappeared as an improved version of the C language introducing object-oriented features'
             },
+            {
+                id:8,
+                name: 'Dart',
+                promt: 'Released by Google in 2011, ... is a champion in growing popularity right now (+532% in a year)'
+            },
+            {
+                id:9,
+                name: 'Rust',
+                promt: 'It is used for building VR applications, game engines, operating systems, etc'
+            },
+            {
+                id:10,
+                name: 'Kotlin',
+                promt: 'modern general-purpose programming language (released in 2015). It runs on JVM'
+            },
         ]
     },
     {

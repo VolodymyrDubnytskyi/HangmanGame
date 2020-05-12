@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-const ListOfTopics = props => {
-    const { containerTopics, topicActive, activeTopicMenu, activeTopicMenuFn, popUpActive } = props;
+const BoxOfTopics = props => {
+    const { containerTopics, topicActive, activeTopicMenu, activeTopicMenuFn, popUpActive, topicDescription } = props;
     return (
         <div
             ref={containerTopics}>
@@ -12,7 +12,7 @@ const ListOfTopics = props => {
                     <i className={`fas fa-info ${activeTopicMenu && 'not-active'}`}></i>
                     <div className={`topic-content-container ${!activeTopicMenu && 'not-active'}`}>
                         <h4 className={'topic-header'}>{topicActive}</h4>
-                        <p className={'topic-description'}>{props.topicDescription}</p>
+                        <p className={'topic-description'}>{topicDescription}</p>
                         <hr className={'topic-decoration-hr'} />
                         <button className={'topic-btn'} onClick={popUpActive}>Change Topic</button>
                     </div>
@@ -21,4 +21,4 @@ const ListOfTopics = props => {
         </div>
     );
 }
-export default ListOfTopics;
+export default BoxOfTopics;

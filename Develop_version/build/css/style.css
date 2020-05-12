@@ -99,10 +99,6 @@
 .topic-header {
   margin: 10px 0;
 }
-.topic-description {
-  /* font-weight: 300;
-  font-style: italic; */
-}
 .topic-decoration-hr {
   margin: 15px auto;
   width: 15%;
@@ -179,6 +175,10 @@
 }
 .listWordYouGet-list {
   width: 100%;
+  height: 92%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .listWordYouGetMenuList .listWordYouGetItem {
   display: block;
@@ -221,7 +221,6 @@
     font-size: 18px;
   }
 }
-
 /* Custom-PopUp */
 .popUp-container {
   position: fixed;
@@ -364,12 +363,10 @@
   background-color: #f15c5c;
   color: #fff;
   padding: 5px;
-  /* display: none; */
   opacity: 0;
   transition: opacity 0.2s ease-in;
 }
 .tooltip-container-visible {
-  /* display: block; */
   opacity: 1;
 }
 .help-box-btn-container {
@@ -379,4 +376,10 @@
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.sentences-box{
+  overflow: auto;
 }

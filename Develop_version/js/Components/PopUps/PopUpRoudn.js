@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PopUp from "./PopUp";
 
 const PopUpRoudn = props => {
@@ -15,5 +15,4 @@ const PopUpRoudn = props => {
     </PopUp>
     );
 }
-
 export default PopUpRoudn;

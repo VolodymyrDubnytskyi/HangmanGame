@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import PopUp from "../PopUp";
-import PopUpTopicList from "../PopUpTopicList";
-import ListOfTopics from "../ListOfTopics";
-import ListOfSentences from "../ListOfSentences";
+import PopUp from "../PopUps/PopUp";
+import PopUpTopicList from "../PopUps/PopUpTopicList";
+import BoxOfTopics from "../AsideBoxes/BoxOfTopics";
+import BoxOfSentences from "../AsideBoxes/BoxOfSentences";
 import Alphabet from "../Alphabet";
-import PopUpRoudn from "../PopUpRoudn";
-import PopUpEndGame from "../PopUpEndGame";
-import HelpBox from "../HelpBox";
-
+import PopUpRoudn from "../PopUps/PopUpRoudn";
+import PopUpEndGame from "../PopUps/PopUpEndGame";
+import HelpBox from "../AsideBoxes/HelpBox";
 
 class LetterContainer extends Component {
 
@@ -37,7 +36,7 @@ class LetterContainer extends Component {
     // adding outside click to close info boxes with topiac and gueesed sentences
     componentDidMount() {
         document.addEventListener("mousedown", this.handleClickOutside);
-        this.props.playAgain && this.setState({popUpActive: true})
+        this.props.playAgain && this.setState({ popUpActive: true })
     }
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
@@ -82,7 +81,6 @@ class LetterContainer extends Component {
         if (this.state.randomWord.includes(clickedLetter.innerText)) {
             this.setState({
                 wordThatYouget: [clickedLetter.innerText, ...this.state.wordThatYouget],
-                // activeIdLetter: [...this.state.activeIdLetter, clickedLetter.innerText]
             }, () => {
                 this.props.letterToCheck(this.state.wordThatYouget)
             })
@@ -129,25 +127,25 @@ class LetterContainer extends Component {
         }
     }
     handelLetterClick = (e, id) => {
-        if (!this.props.playAgain) {
-            if (!this.state.popUpActive) {
-                if (!this.props.gameOver) {
-                    if (this.state.gameStart === true) {
-                        this.checkGueesedLetter(e.target, id);
-                        this.setState(
-                            {
-                                win: this.state.win.filter((el) => {
-                                    return el !== e.target.innerText
-                                })
-                            }, () => {
-                                this.checkDidYouWinRound();
-                            }
-                        )
-                    }
+        const { activeIdLetter, win, popUpActive, gameStart } = this.state;
+        const { playAgain, gameOver } = this.props;
+        if (!activeIdLetter.includes(e.target.innerText) &&
+            win.length !== 0 &&
+            !playAgain &&
+            !popUpActive &&
+            !gameOver &&
+            gameStart === true) {
+            this.checkGueesedLetter(e.target, id);
+            this.setState(
+                {
+                    win: this.state.win.filter((el) => {
+                        return el !== e.target.innerText
+                    })
+                }, () => {
+                    this.checkDidYouWinRound();
                 }
-            }
+            )
         }
-
     }
     showMenu = e => {
         this.setState({
@@ -213,14 +211,33 @@ class LetterContainer extends Component {
                         title={'Congratulations'}
                         btntitle={'Continue'} />
                 }
-                <ListOfSentences
+                {
+                    (this.state.popUpActive || this.props.playAgain) &&
+                    <PopUp>
+                        <PopUpTopicList
+                            title={'Choose Topic'}
+                            topicFn={this.popUpNotactive}
+                            closeTopicPopUp={this.closeTopicPopUp}
+                            sentences={this.state.sentencesDefult}
+                            playAgain={this.props.playAgain} />
+                    </PopUp>
+                }
+                {
+                    this.state.popUpEndGame &&
+                    <PopUpEndGame
+                        listOfAllGuessedWords={this.state.wordToList}
+                        closePopUpEndGame={this.closePopUpEndGame}
+                        mistakes={this.props.mistakes}
+                    />
+                }
+                <BoxOfSentences
                     activeMenu={this.state.activeMenu}
                     showMenu={this.showMenu}
                     container={this.container}
                     wordToList={this.state.wordToList}
                     ifYouWon={this.state.ifYouWon}
                 />
-                <ListOfTopics
+                <BoxOfTopics
                     containerTopics={this.containerTopics}
                     topicActive={this.state.topicActive}
                     activeTopicMenu={this.state.activeTopicMenu}
@@ -248,27 +265,6 @@ class LetterContainer extends Component {
                     disabled={(this.state.popUpActive || this.props.count <= 0) && true}>
                     Random word
                 </button>
-                {
-                    (this.state.popUpActive || this.props.playAgain) &&
-                    <PopUp>
-                        <PopUpTopicList
-                            title={'Choose Topic'}
-                            topicFn={this.popUpNotactive}
-                            closeTopicPopUp={this.closeTopicPopUp}
-                            sentences={this.state.sentencesDefult}
-                            playAgain={this.props.playAgain} />
-                    </PopUp>
-                }
-                {
-                    this.state.popUpEndGame &&
-                    <PopUpEndGame
-                        listOfAllGuessedWords={this.state.wordToList}
-                        closePopUpEndGame={this.closePopUpEndGame}
-                        mistakes={this.props.mistakes}
-
-                    />
-                }
-
             </>
         );
     }

@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { artists, popUpTopics } from "../data/dummy-data";
+import React from "react";
 
 const PopUp = props => {
     return (
@@ -10,5 +9,4 @@ const PopUp = props => {
         </div>
     );
 }
-
 export default PopUp;

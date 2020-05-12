@@ -1,12 +1,12 @@
 import React from "react";
 
-const ListOfSentences = props => {
+const BoxOfSentences = props => {
     const { container, ifYouWon, activeMenu, showMenu, wordToList } = props;
     return (
         <div
             ref={container}>
             {ifYouWon && <div
-                className={`listWordYouGet ${activeMenu && 'listWordYouGetMenuList'}`}
+                className={`listWordYouGet ${activeMenu && 'listWordYouGetMenuList'} sentences-box`}
                 onClick={showMenu}>
                     <h4 className={`${!activeMenu && 'nActive'}`}>Guessed words</h4>
                 <ul className={'listWordYouGet-list'}>
@@ -19,4 +19,4 @@ const ListOfSentences = props => {
         </div>
     );
 }
-export default ListOfSentences;
+export default BoxOfSentences;

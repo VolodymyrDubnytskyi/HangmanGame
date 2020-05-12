@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { artists, popUpTopics } from "../data/dummy-data";
-import PopUp from "./PopUp";
+import React from "react";
+import { artists, popUpTopics } from "../../data/dummy-data";
 
 const PopUpTopicList = props => {
     const topicHandelClick = item => {
@@ -21,18 +20,13 @@ const PopUpTopicList = props => {
                         </li>
                     })}
                 </ul>
-                <div className={'popUp-btn-container'}>
-
-                </div>
             </section>
             {props.sentences.length !== 0 &&
-            !props.playAgain &&
+                !props.playAgain &&
                 <div className={'popUp-close-btn'} onClick={props.closeTopicPopUp}>
                     <i className='fas fa-times'></i>
                 </div>}
-
         </>
     );
 }
-
 export default PopUpTopicList;
