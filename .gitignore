@@ -1,2 +1,4 @@
 .history
+.firebase.gitignore
+.babelrc
 node_modules
