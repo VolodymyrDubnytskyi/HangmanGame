@@ -147,6 +147,14 @@
   font-family: "Open Sans", sans-serif;
   overflow: hidden;
 }
+@media (max-width: 600px) {
+  .topic-container,
+.listWordYouGet,
+.help-box-container{
+  height: 45px;
+  width: 45px;
+}
+}
 .help-box-container {
   top: 65px;
   left: 0;
@@ -179,6 +187,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .listWordYouGetMenuList .listWordYouGetItem {
   display: block;
@@ -216,9 +225,16 @@
     font-size: 20px;
   }
   .letter {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     font-size: 18px;
+  }
+  .RandomWordContainer{
+    margin: 20px 0;
+  }
+  .random_word_btn{
+    margin: 10px 0 15px 0;
+    padding: 12px 15px;
   }
 }
 /* Custom-PopUp */
@@ -280,7 +296,7 @@
   cursor: pointer;
   transition: 0.5s;
 }
-.popUp-close-btn:hover{
+.popUp-close-btn:hover {
   background-color: #f15c5c;
   color: #fff;
   box-shadow: none;
@@ -339,7 +355,7 @@
   margin: 10px 0;
   font-size: 12px;
 }
-.help-box-heding{
+.help-box-heding {
   font-size: 14px;
   margin: 10px 0;
 }
@@ -380,6 +396,6 @@
 ::-webkit-scrollbar {
   display: none;
 }
-.sentences-box{
+.sentences-box {
   overflow: auto;
 }
