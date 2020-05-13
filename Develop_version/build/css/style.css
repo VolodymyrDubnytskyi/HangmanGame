@@ -233,7 +233,7 @@
     margin: 20px 0;
   }
   .random_word_btn{
-    margin: 10px 0 15px 0;
+    margin: 20px;
     padding: 12px 15px;
   }
 }
@@ -336,6 +336,7 @@
 /* end game popUp  */
 .popUp-endGame-container {
   padding: 15px;
+  z-index: 500;
 }
 .popUp-endGame-box,
 .topic-endGame-btn-container {
