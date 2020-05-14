@@ -6,7 +6,8 @@
 .main-bg {
   background-color: rgb(238, 238, 238);
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: -webkit-fill-available;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,11 +150,24 @@
 }
 @media (max-width: 600px) {
   .topic-container,
-.listWordYouGet,
-.help-box-container{
-  height: 45px;
-  width: 45px;
+  .listWordYouGet,
+  .help-box-container {
+    height: 45px;
+    width: 45px;
+  }
 }
+@media (max-width: 450px) {
+  .letter {
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
+  }
+  .topic-container,
+  .listWordYouGet,
+  .help-box-container {
+    height: 40px;
+    width: 40px;
+  }
 }
 .help-box-container {
   top: 65px;
@@ -174,7 +188,8 @@
 .listWordYouGetMenuList {
   width: 250px;
   height: 200px;
-  background-color: rgb(248, 248, 248);
+  /* background-color: rgb(248, 248, 248); */
+  background-color: #fff;
   border: 1px solid #f15c5c;
   box-shadow: 0px 0px 2px 0px #f15c5c;
   color: #000;
@@ -183,11 +198,18 @@
 }
 .listWordYouGet-list {
   width: 100%;
-  height: 92%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.listWordTouGet-sticky-heading {
+  position: sticky;
+  height: 25px;
+  width: 100%;
+  top: 0;
 }
 .listWordYouGetMenuList .listWordYouGetItem {
   display: block;
@@ -229,10 +251,10 @@
     width: 35px;
     font-size: 18px;
   }
-  .RandomWordContainer{
+  .RandomWordContainer {
     margin: 20px 0;
   }
-  .random_word_btn{
+  .random_word_btn {
     margin: 20px;
     padding: 12px 15px;
   }
@@ -250,7 +272,7 @@
   background-color: rgb(248, 248, 248);
   box-shadow: 0px 0px 4px 0px #f15c5c;
   font-family: "Open Sans", sans-serif;
-  z-index: 100;
+  z-index: 150;
 }
 .popUp-title-container {
   border-bottom: 1px solid #f15c5c;
@@ -399,4 +421,7 @@
 }
 .sentences-box {
   overflow: auto;
+}
+.topic-text-container {
+  height: 50px;
 }

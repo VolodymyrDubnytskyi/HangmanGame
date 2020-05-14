@@ -6,9 +6,11 @@ const BoxOfSentences = props => {
         <div
             ref={container}>
             {ifYouWon && <div
-                className={`listWordYouGet ${activeMenu && 'listWordYouGetMenuList'} sentences-box`}
+                className={`listWordYouGet ${activeMenu && 'listWordYouGetMenuList'}`}
                 onClick={showMenu}>
+                <div className={`${activeMenu && 'listWordTouGet-sticky-heading'}`}>
                     <h4 className={`${!activeMenu && 'nActive'}`}>Guessed words</h4>
+                </div>
                 <ul className={'listWordYouGet-list'}>
                     <i className={`fas fa-check ${activeMenu && 'nActive'}`}></i>
                     {wordToList.map((el, i) => {

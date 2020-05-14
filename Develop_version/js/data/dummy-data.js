@@ -31,28 +31,28 @@ export const cities = [
     'Lisbon'
 ]
 export const popUpTopics = [
-    {
-        id: 1,
-        name: 'Artists',
-        description: '',
-        content: [
-            {
-                id: 1,
-                name: 'PICASSO',
-                promt: 'some decrition PICASSO'
-            },
-            {
-                id: 2,
-                name: 'KLIMT',
-                promt: 'some decrition KLIMNT'
-            },
-            {
-                id: 3,
-                name: 'VAN GOGH',
-                promt: 'some decrition VANGOH'
-            },
-        ]
-    },
+    // {
+    //     id: 1,
+    //     name: 'Artists',
+    //     description: '',
+    //     content: [
+    //         {
+    //             id: 1,
+    //             name: 'PICASSO',
+    //             promt: 'some decrition PICASSO'
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'KLIMT',
+    //             promt: 'some decrition KLIMNT'
+    //         },
+    //         {
+    //             id: 3,
+    //             name: 'VAN GOGH',
+    //             promt: 'some decrition VANGOH'
+    //         },
+    //     ]
+    // },
     {
         id: 2,
         name: 'Programming languages',
@@ -111,25 +111,67 @@ export const popUpTopics = [
         ]
     },
     {
-        id: 2,
-        name: 'Presidents of poland',
-        description: 'Yes, all of them',
+        id: 3,
+        name: 'Planets',
+        description: 'Planets of the solar system',
         content: [
             {
                 id:1,
-                name: 'Gabriel Narutowicz',
-                promt: 'the first one'
+                name: 'Jupiter',
+                promt: 'the largest planet in the Solar System'
             },
             {
                 id:2,
-                name: 'Java',
-                promt: 'As of 2019, ... was one of the most popular programming languages in use'
+                name: 'Neptune',
+                promt: 'the farthest known planet from the Sun in the Solar System'
             },
             {
                 id:3,
-                name: 'Python',
-                promt: 'Being the most learned at the moment'
+                name: 'Saturn',
+                promt: 'is named after the Roman god of wealth and agriculture'
+            },
+            {
+                id:4,
+                name: 'Mars',
+                promt: 'hello! Elon Musk'
+            },
+            {
+                id:5,
+                name: 'Venus',
+                promt: 'It has the densest atmosphere, consisting of more than 96% carbon dioxide'
+            },
+            {
+                id:6,
+                name: 'Mercury',
+                promt: 'Its orbit around the Sun takes 87.97 days'
+            },
+            {
+                id:7,
+                name: 'Earth',
+                promt: 'only astronomical object known to harbor life'
             },
         ]
     },
+    // {
+    //     id: 4,
+    //     name: 'Presidents of poland',
+    //     description: 'Yes, all of them',
+    //     content: [
+    //         {
+    //             id:1,
+    //             name: 'Gabriel Narutowicz',
+    //             promt: 'the first one'
+    //         },
+    //         {
+    //             id:2,
+    //             name: 'Java',
+    //             promt: 'As of 2019, ... was one of the most popular programming languages in use'
+    //         },
+    //         {
+    //             id:3,
+    //             name: 'Python',
+    //             promt: 'Being the most learned at the moment'
+    //         },
+    //     ]
+    // },
 ]
