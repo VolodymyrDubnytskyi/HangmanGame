@@ -156,12 +156,7 @@
     width: 45px;
   }
 }
-@media (max-width: 450px) {
-  .letter {
-    height: 30px;
-    width: 30px;
-    font-size: 18px;
-  }
+@media (max-width: 450px){
   .topic-container,
   .listWordYouGet,
   .help-box-container {
@@ -257,6 +252,13 @@
   .random_word_btn {
     margin: 20px;
     padding: 12px 15px;
+  }
+}
+@media (max-width: 450px){
+  .letter {
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
   }
 }
 /* Custom-PopUp */
