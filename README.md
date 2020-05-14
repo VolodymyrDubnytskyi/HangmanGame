@@ -7,8 +7,8 @@ There are some topics on which one can play. The changing topic box can be found
 The main goal of the project is to practice skills in using React.
 
 To open the project, please act as advised below:
-1.**clone the reposetory** to your local folder using the command **"https://github.com/VolodymyrDubnytskyi/HangmanGame.git"** in your terminal;
-2.use **npm install** comand in your terminal to install all the packages you need;
-3.in your terminal enter the folder whare project is located and use command **npm start** to run the project;
+1. **clone the reposetory** to your local folder using the command **"https://github.com/VolodymyrDubnytskyi/HangmanGame.git"** in your terminal;
+2. use **npm install** comand in your terminal to install all the packages you need;
+3. in your terminal enter the folder whare project is located and use command **npm start** to run the project;
 
 Also this link **https://hangmangame-d2d92.web.app/** will direct you to browser version webpage.
