@@ -152,26 +152,4 @@ export const popUpTopics = [
             },
         ]
     },
-    // {
-    //     id: 4,
-    //     name: 'Presidents of poland',
-    //     description: 'Yes, all of them',
-    //     content: [
-    //         {
-    //             id:1,
-    //             name: 'Gabriel Narutowicz',
-    //             promt: 'the first one'
-    //         },
-    //         {
-    //             id:2,
-    //             name: 'Java',
-    //             promt: 'As of 2019, ... was one of the most popular programming languages in use'
-    //         },
-    //         {
-    //             id:3,
-    //             name: 'Python',
-    //             promt: 'Being the most learned at the moment'
-    //         },
-    //     ]
-    // },
 ]

@@ -2,7 +2,7 @@ import React from "react";
 import PopUp from "./PopUp";
 
 const PopUpEndGame = props => {
-    const {listOfAllGuessedWords, closePopUpEndGame, mistakes } = props;
+    const { listOfAllGuessedWords, closePopUpEndGame, mistakes } = props;
     return (
         <PopUp>
             <div className={'popUp-endGame-container'}>
