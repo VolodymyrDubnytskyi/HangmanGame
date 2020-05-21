@@ -155,14 +155,6 @@
     width: 45px;
   }
 }
-/* @media (max-width: 450px){
-  .topic-container,
-  .listWordYouGet,
-  .help-box-container {
-    height: 40px;
-    width: 40px;
-  }
-} */
 .help-box-container {
   top: 65px;
   left: 0;
@@ -253,13 +245,6 @@
     padding: 12px 15px;
   }
 }
-/* @media (max-width: 450px){
-  .letter {
-    height: 30px;
-    width: 30px;
-    font-size: 18px;
-  }
-} */
 /* Custom-PopUp */
 .popUp-container {
   position: fixed;
